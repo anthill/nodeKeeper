@@ -7,6 +7,7 @@ Created on Thu Nov 13 11:01:58 2014
 
 import cv2
 import pandas as pd
+import os
 import time
 import datetime
 import picamera
@@ -32,12 +33,12 @@ def cam_photo():
     camera.start_preview()
     time.sleep(5)
     timecam = time.strftime("%Y%m%d-%H%M%S") + ".jpg"
-    camera.capture('/home/pi/keeper_of_node/image_test/' + '%s' %(timecam))
+    camera.capture('image_test/' + '%s' %(timecam))
     time.sleep(115)
     camera.stop_preview()
     
 def analyse_photo():
-    img = cv2.imread('Image/*.jpg')
+    img = cv2.imread('image_test/*.jpg')
     resized_image = cv2.resize(img, (640, 480))
     nodes = node_cascade.detectMultiScale(resized_image)
     return(len(nodes))
@@ -89,7 +90,7 @@ while  i < 10: #true:
         y = analyse_photo()
         i += 1
         s1.write(dict(x=x,y=y))
-    
+        os.remove('image_test/*jpg')
     except Exception, e:
         print "Error..."
         print e
