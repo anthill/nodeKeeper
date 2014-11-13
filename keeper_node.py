@@ -19,6 +19,9 @@ import pylab as plt
 from pylab import rcParams
 from matplotlib.patches import Rectangle
 
+# Force matplotlib to not use any Xwindows backend.
+# to avoid an error : "no display name and no $DISPLAY environment variable"
+matplotlib.use('Agg')
 
 
 # init Cam
