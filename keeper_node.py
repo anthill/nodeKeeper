@@ -15,6 +15,8 @@ import plotly.plotly as py
 import plotly.tools as tls
 from plotly.graph_objs import *
 
+
+
 # init Cam
 camera = picamera.PiCamera()
 camera.vflip = True
@@ -85,6 +87,7 @@ i = 0
 # Loop
 while  i < 10: #true:
     try:
+        print "début de loop n°: " + str(i)
         filename = cam_photo()
         # Current time on x-axis, len of nordeur on y-axis
         x=datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
@@ -92,6 +95,7 @@ while  i < 10: #true:
         i += 1
         s1.write(dict(x=x,y=y))
         os.remove('image_test/' + filename)
+        print "fin de loop"
     except Exception, e:
         print "Error..."
         print e
