@@ -8,6 +8,7 @@ Created on Thu Nov 13 11:01:58 2014
 import cv2
 import pandas as pd
 import os
+import glob
 import time
 import datetime
 import picamera
@@ -87,6 +88,7 @@ i = 0
 # Loop
 while  i < 10: #true:
     try:
+        print "Nombre d'images : " + str(len(glob.glob("data/learning_images/positive/*.pgm")))
         print "début de loop n°: " + str(i)
         filename = cam_photo()
         # Current time on x-axis, len of nordeur on y-axis
