@@ -18,6 +18,7 @@ from plotly.graph_objs import *
 import pylab as plt
 from pylab import rcParams
 from matplotlib.patches import Rectangle
+import matplotlib
 
 # Force matplotlib to not use any Xwindows backend.
 # to avoid an error : "no display name and no $DISPLAY environment variable"
