@@ -36,9 +36,10 @@ def cam_photo():
     camera.capture('image_test/' + '%s' %(timecam))
     time.sleep(115)
     camera.stop_preview()
+    return(timecam)
     
-def analyse_photo():
-    img = cv2.imread('image_test/*.jpg')
+def analyse_photo(filename):
+    img = cv2.imread('image_test/' + filename)
     resized_image = cv2.resize(img, (640, 480))
     nodes = node_cascade.detectMultiScale(resized_image)
     return(len(nodes))
@@ -84,13 +85,13 @@ i = 0
 # Loop
 while  i < 10: #true:
     try:
-        cam_photo()
+        filename = cam_photo()
         # Current time on x-axis, len of nordeur on y-axis
         x=datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
-        y = analyse_photo()
+        y = analyse_photo(filename)
         i += 1
         s1.write(dict(x=x,y=y))
-        os.remove('image_test/*jpg')
+        os.remove('image_test/' + filename)
     except Exception, e:
         print "Error..."
         print e
