@@ -32,7 +32,7 @@ def cam_photo():
     time.sleep(5)
     timecam = time.strftime("%Y%m%d-%H%M%S") + ".jpg"
     camera.capture('/home/pi/keeper_of_node/image_test/' + '%s' %(timecam))
-    time.sleep(1795)
+    time.sleep(115)
     camera.stop_preview()
     
 def analyse_photo():
@@ -78,15 +78,15 @@ s1 = py.Stream(stream_ids[0])
 # (@) Open the stream
 s1.open()
 
-
+i = 0
 # Loop
-while true:
+while  i < 10: #true:
     try:
         cam_photo()
         # Current time on x-axis, len of nordeur on y-axis
         x=datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
         y = analyse_photo()
-    
+        i += 1
         s1.write(dict(x=x,y=y))
     
     except:
