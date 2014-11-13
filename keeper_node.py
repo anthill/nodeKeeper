@@ -15,6 +15,9 @@ import picamera
 import plotly.plotly as py
 import plotly.tools as tls
 from plotly.graph_objs import *
+import pylab as plt
+from pylab import rcParams
+from matplotlib.patches import Rectangle
 
 
 
@@ -47,6 +50,23 @@ def analyse_photo(filename):
     nodes = node_cascade.detectMultiScale(resized_image)
     return(len(nodes))
 
+def create_photo_analyse(filename):
+    img = cv2.imread('image_test/' + filename)
+    resized_image = cv2.resize(img, (640, 480))
+    plt.imshow(resized_image)
+    currentAxis = plt.gca()
+    xx,yy = [],[]
+    for (x,y,w,h) in nodes:
+        xx += [x+w/2.]
+        yy += [y+h/2.]
+        coords = (x, y), w, h
+        currentAxis.add_patch(Rectangle(*coords, fill=True, alpha=0.2, color='#00FF00', edgecolor='#00FF00', linewidth=3))
+    
+    plt.scatter(xx,yy, color="r")
+    plt.savefig('image_analyse/' + filename)
+    
+    
+    
 # Steam Attribut
 ################
 
@@ -96,8 +116,10 @@ while  i < 10: #true:
         y = analyse_photo(filename)
         i += 1
         s1.write(dict(x=x,y=y))
+        create_photo_analyse() # To have the result of our picture with the number of match
         os.remove('image_test/' + filename)
         print "fin de loop"
+        
     except Exception, e:
         print "Error..."
         print e
