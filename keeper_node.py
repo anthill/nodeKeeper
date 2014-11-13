@@ -89,7 +89,8 @@ while  i < 10: #true:
         i += 1
         s1.write(dict(x=x,y=y))
     
-    except:
+    except Exception, e:
         print "Error..."
+        print e
         s1.close()
     
