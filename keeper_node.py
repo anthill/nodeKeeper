@@ -15,14 +15,15 @@ import picamera
 import plotly.plotly as py
 import plotly.tools as tls
 from plotly.graph_objs import *
-import pylab as plt
-from pylab import rcParams
-from matplotlib.patches import Rectangle
 import matplotlib
-
 # Force matplotlib to not use any Xwindows backend.
 # to avoid an error : "no display name and no $DISPLAY environment variable"
 matplotlib.use('Agg')
+import pylab as plt
+from pylab import rcParams
+from matplotlib.patches import Rectangle
+
+
 
 
 # init Cam
