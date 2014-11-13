@@ -116,7 +116,7 @@ while  i < 10: #true:
         y = analyse_photo(filename)
         i += 1
         s1.write(dict(x=x,y=y))
-        create_photo_analyse() # To have the result of our picture with the number of match
+        create_photo_analyse(filename) # To have the result of our picture with the number of match
         os.remove('image_test/' + filename)
         print "fin de loop"
         
