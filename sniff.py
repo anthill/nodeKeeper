@@ -13,11 +13,12 @@ import argparse
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--interface", required = True, help = "From which interface ar you connected.")
 ap.add_argument("-s", "--server", required = True, help = "What server should be used.")
+ap.add_argument("-r", "--remove", required = False, help = "Devices to ignore seaprated by ; eg: 'Hewlett Packard;FREEBOX SA'")
 args = vars(ap.parse_args())
 
 
 
-def count_devices(interface, server):
+def count_devices(interface, server, to_remove = []):
 	cmd = ["sudo", "arp-scan", "--retry=8", "--ignoredups", "-I", interface, server + "/24"]
 	p = subprocess.Popen(cmd, stdout=subprocess.PIPE)
 
@@ -27,7 +28,6 @@ def count_devices(interface, server):
 
 	devices = map(lambda x: x.split("\t")[-1], hosts)
 
-	to_remove = ["Hewlett Packard", "FREEBOX SA"]
 
 	devices = filter(lambda x: x not in to_remove, devices)
 	counts  = {key: devices.count(key) for key in devices}
@@ -92,7 +92,7 @@ s3.open()
 while True:
     
     x = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
-    res = count_devices(args["interface"], args["server"])
+    res = count_devices(args["interface"], args["server"], args["remove"].split(";"))
 
     total = sum(res.values())
     apple = sum(map(lambda x: res[x], filter(lambda x: "apple" in x.lower() , res.keys())))
