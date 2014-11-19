@@ -39,7 +39,6 @@ def cam_photo():
     time.sleep(5)
     timecam = time.strftime("%Y%m%d-%H%M%S") + ".jpg"
     camera.capture('image_test/' + '%s' %(timecam))
-    time.sleep(115)
     camera.stop_preview()
     return(timecam)
     
