@@ -68,6 +68,6 @@ def create_photo_analyse(filename, node_cascade):
 def snapAndAnalyse(camera, node_cascade):
     filename = cam_photo(camera)
     result = analyse_photo(filename, node_cascade)
-    os.remove('image_test/' + filename)
+    # os.remove('image_test/' + filename)
     return result
     

@@ -105,7 +105,7 @@ while True:
     s3.write(dict(x=x, y=others))  
     s4.write(dict(x=x, y=faces))  
 
-    time.sleep(30)
+    time.sleep(60)
     print x
     print res    
 
