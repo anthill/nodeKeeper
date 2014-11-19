@@ -35,28 +35,28 @@ trace1 = Scatter(
     x=past_data["x"],
     y=past_data["y1"],
     mode='lines+markers',
-    name='Total',
+    name='Total devices',
     stream=Stream(token=stream_ids[0], maxpoints=80)
 )
 trace2 = Scatter(
     x=past_data["x"],
     y=past_data["y2"],
     mode='lines+markers',
-    name='Apple',
+    name='Apple devices',
     stream=Stream(token=stream_ids[1], maxpoints=80)
 )
 trace3 = Scatter(
     x=past_data["x"],
     y=past_data["y2"],
     mode='lines+markers',
-    name='Other',
+    name='Other devices',
     stream=Stream(token=stream_ids[2], maxpoints=80)
 )
 trace4 = Scatter(
     x=past_data["x"],
     y=past_data["y4"],
     mode='lines+markers',
-    name='Faces',
+    name='Detected faces',
     stream=Stream(token=stream_ids[3], maxpoints=80)
 )
 data = Data([trace1, trace2, trace3, trace4])
@@ -95,7 +95,6 @@ while True:
     past_data["y2"] += [apple]
     past_data["y3"] += [others]
     past_data["y4"] += [faces]
-    print past_data
     with open("data/dump.json", "w") as dump:
         dump.write(json.dumps(past_data))
     
