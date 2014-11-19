@@ -31,7 +31,7 @@ def initFaceRecog():
     camera.vflip = True
 
     # Init Model
-    node_cascade = cv2.CascadeClassifier('model/cascade.xml')
+    node_cascade = cv2.CascadeClassifier('script/cascade.xml')
 
 
 def cam_photo():
