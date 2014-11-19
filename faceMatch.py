@@ -32,9 +32,10 @@ def initFaceRecog():
 
     # Init Model
     node_cascade = cv2.CascadeClassifier('script/cascade.xml')
+    return [camera, node_cascade]
 
 
-def cam_photo():
+def cam_photo(camera):
     camera.start_preview()
     time.sleep(5)
     timecam = time.strftime("%Y%m%d-%H%M%S") + ".jpg"
@@ -42,13 +43,13 @@ def cam_photo():
     camera.stop_preview()
     return(timecam)
     
-def analyse_photo(filename):
+def analyse_photo(filename, node_cascade):
     img = cv2.imread('image_test/' + filename)
     resized_image = cv2.resize(img, (640, 480))
     nodes = node_cascade.detectMultiScale(resized_image)
     return(len(nodes))
 
-def create_photo_analyse(filename):
+def create_photo_analyse(filename, node_cascade):
     img = cv2.imread('image_test/' + filename)
     resized_image = cv2.resize(img, (640, 480))
     plt.imshow(resized_image)
@@ -64,9 +65,9 @@ def create_photo_analyse(filename):
     plt.scatter(xx,yy, color="r")
     plt.savefig('image_analyse/' + filename)
     
-def snapAndAnalyse():
-    filename = cam_photo()
-    result = analyse_photo(filename)
+def snapAndAnalyse(camera, node_cascade):
+    filename = cam_photo(camera)
+    result = analyse_photo(filename, node_cascade)
     os.remove('image_test/' + filename)
     return result
     

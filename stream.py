@@ -18,7 +18,7 @@ ap.add_argument("-r", "--remove", default="", required = False, help = "Devices 
 args = vars(ap.parse_args())
 
 # init hardware
-initFaceRecog()
+[camera, node_cascade] = initFaceRecog()
 
 # check for past data stored in a file
 try:
@@ -80,7 +80,7 @@ while True:
     x = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
     res = count_devices(args["interface"], args["server"], args["remove"].split(";"))
     try:
-        faces = snapAndAnalyse()
+        faces = snapAndAnalyse(camera, node_cascade)
     except Exception, e:
         print "Error in snapAndAnalyse"
         print e
