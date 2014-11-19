@@ -81,8 +81,9 @@ while True:
     res = count_devices(args["interface"], args["server"], args["remove"].split(";"))
     try:
         faces = snapAndAnalyse()
-    except:
+    except Exception e:
         print "Error in snapAndAnalyse"
+        print e
         faces = 0
 
     total = sum(res.values())
