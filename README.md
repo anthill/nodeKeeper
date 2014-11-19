@@ -21,6 +21,6 @@ At the same time, we ask the network how many devices are connected and among th
 ## Usage
 
 ```
-sudo python sniff.py -i wlan0 -s 10.185.62.0
+sudo python sniff.py -i wlan0 -s 10.185.62.0 -r "Lexmark International Inc.;NEC Corporation"
 ```
 

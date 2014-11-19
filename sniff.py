@@ -13,7 +13,7 @@ import argparse
 ap = argparse.ArgumentParser()
 ap.add_argument("-i", "--interface", required = True, help = "From which interface ar you connected.")
 ap.add_argument("-s", "--server", required = True, help = "What server should be used.")
-ap.add_argument("-r", "--remove", required = False, help = "Devices to ignore seaprated by ; eg: 'Hewlett Packard;FREEBOX SA'")
+ap.add_argument("-r", "--remove", default="", required = False, help = "Devices to ignore seaprated by ; eg: 'Hewlett Packard;FREEBOX SA'")
 args = vars(ap.parse_args())
 
 
@@ -36,8 +36,8 @@ def count_devices(interface, server, to_remove = []):
 
 # check for a file with the dump
 try:
-    with dump as open("data/dump.json", "r"):
-        past_data = json.parse(dump.read())
+    with open("data/dump.json", "r") as dump:
+        past_data = json.loads(dump.read())
 except:
     print "No past data"
     past_data = {"x": [], "y1": [], "y2": [], "y3": []}
@@ -98,11 +98,13 @@ while True:
     apple = sum(map(lambda x: res[x], filter(lambda x: "apple" in x.lower() , res.keys())))
     others = sum(map(lambda x: res[x], filter(lambda x: "apple" not in x.lower() , res.keys())))
 
-    past_data["x"] += x
-    past_data["y1"] += apple
-    past_data["y2"] += others
-    with dump as open("data/dump.json", "w"):
-        dump.write(json.dumps(dump))
+    past_data["x"] += [x]
+    past_data["y1"] += [total]
+    past_data["y2"] += [apple]
+    past_data["y3"] += [others]
+    print past_data
+    with open("data/dump.json", "w") as dump:
+        dump.write(json.dumps(past_data))
     
     
     s1.write(dict(x=x, y=total))  
