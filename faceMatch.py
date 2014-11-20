@@ -53,6 +53,7 @@ def analyse_photo(filename, node_cascade):
 def create_photo_analyse(filename, node_cascade):
     img = cv2.imread('image_test/' + filename)
     resized_image = cv2.resize(img, (640, 480))
+    plt.fig
     plt.imshow(resized_image)
     currentAxis = plt.gca()
     nodes = node_cascade.detectMultiScale(resized_image)
