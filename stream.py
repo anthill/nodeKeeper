@@ -77,7 +77,7 @@ s4.open()
 
 while True:
     
-    x = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S.%f')
+    x = (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime('%Y-%m-%d %H:%M:%S.%f')
     res = count_devices(args["interface"], args["server"], args["remove"].split(";"))
     try:
         faces = snapAndAnalyse(camera, node_cascade)
