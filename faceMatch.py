@@ -54,7 +54,7 @@ def create_photo_analyse(filename, node_cascade):
     img = cv2.imread('image_test/' + filename)
     resized_image = cv2.resize(img, (640, 480))
     fig = plt.figure()
-    fig.imshow(resized_image)
+    plt.imshow(resized_image)
     currentAxis = plt.gca()
     nodes = node_cascade.detectMultiScale(resized_image)
     xx,yy = [],[]
@@ -64,8 +64,8 @@ def create_photo_analyse(filename, node_cascade):
         coords = (x, y), w, h
         currentAxis.add_patch(Rectangle(*coords, fill=True, alpha=0.2, color='#00FF00', edgecolor='#00FF00', linewidth=3))
     
-    fig.scatter(xx,yy, color="r")
-    fig.savefig('image_analyse/' + filename)
+    plt.scatter(xx,yy, color="r")
+    plt.savefig('image_analyse/' + filename)
     
 def snapAndAnalyse(camera, node_cascade):
     filename = cam_photo(camera)
