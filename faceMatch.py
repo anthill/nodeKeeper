@@ -22,7 +22,6 @@ import pylab as plt
 from pylab import rcParams
 from matplotlib.patches import Rectangle
 
-
 def initFaceRecog():
 
     # init Cam
