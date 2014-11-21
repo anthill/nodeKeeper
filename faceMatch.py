@@ -9,7 +9,6 @@ import cv2
 import pandas as pd
 import os
 import glob
-import time
 import datetime
 import picamera
 import plotly.plotly as py
@@ -38,7 +37,7 @@ def initFaceRecog():
 def cam_photo(camera):
     camera.start_preview()
     time.sleep(5)
-    timecam = time.strftime("%Y%m%d-%H%M%S") + ".jpg"
+    timecam = (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime('%Y%m%d-%H%M%S') + ".jpg"
     camera.capture('image_test/' + '%s' %(timecam))
     camera.stop_preview()
     return(timecam)
