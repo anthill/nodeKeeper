@@ -18,7 +18,7 @@ from plotly.graph_objs import *
 import matplotlib
 # Force matplotlib to not use any Xwindows backend.
 # to avoid an error : "no display name and no $DISPLAY environment variable"
-#matplotlib.use('Agg')
+matplotlib.use('Agg')
 import pylab as plt
 from pylab import rcParams
 from matplotlib.patches import Rectangle
@@ -53,7 +53,7 @@ def create_photo_analyse(filename, node_cascade):
     img = cv2.imread('image_test/' + filename)
     fig = plt.figure()
     resized_image = cv2.resize(img, (640, 480)) 
-    resized_image = resized_image[:,:,::-1]
+    #resized_image = resized_image[:,:,::-1]
     plt.imshow(resized_image)
     plt.xticks([]), plt.yticks([])
     currentAxis = plt.gca()
