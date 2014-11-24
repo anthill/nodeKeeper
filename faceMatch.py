@@ -57,7 +57,7 @@ def create_photo_analyse(filename, node_cascade):
     plt.imshow(resized_image)
     #plt.xticks([]), plt.yticks([])
     currentAxis = plt.gca()
-    currentAxis.set_axis_off()
+    #currentAxis.set_axis_off()
     nodes = node_cascade.detectMultiScale(resized_image)
     xx,yy = [],[]
     for (x,y,w,h) in nodes:
