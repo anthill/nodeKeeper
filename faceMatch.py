@@ -54,7 +54,7 @@ def create_photo_analyse(filename, node_cascade):
     fig = plt.figure()
     resized_image = cv2.resize(img, (640, 480)) 
     nodes = node_cascade.detectMultiScale(resized_image)
-    resized_image = resized_image[:,:,::-1]
+    #resized_image = resized_image[:,:,::-1]
     plt.imshow(resized_image)
     plt.xticks([]), plt.yticks([])
     currentAxis = plt.gca()
