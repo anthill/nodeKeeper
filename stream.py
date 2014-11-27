@@ -30,16 +30,16 @@ except:
     past_data = {"x": [], "y1": [], "y2": [], "y3": [], "y4": []}
 
 # Filtering history 
-past_data = pd.DataFrame(past_data)
-past_data = past_data.tail(500)
+past = pd.DataFrame(past_data)
+past = past.tail(500)
 
 
 # init plotly stream
 stream_ids = tls.get_credentials_file()['stream_ids']
 
 trace1 = Scatter(
-    x=past_data["x"],
-    y=past_data["y1"],
+    x=past["x"],
+    y=past["y1"],
     mode='lines+markers',
     name='Total devices',
     stream=Stream(token=stream_ids[0], maxpoints=500),
@@ -58,8 +58,8 @@ trace1 = Scatter(
 )
 
 trace2 = Scatter(
-    x=past_data["x"],
-    y=past_data["y2"],
+    x=past["x"],
+    y=past["y2"],
     mode='lines+markers',
     name='Apple devices',
     stream=Stream(token=stream_ids[1], maxpoints=500),
@@ -78,8 +78,8 @@ trace2 = Scatter(
 )
 
 trace3 = Scatter(
-    x=past_data["x"],
-    y=past_data["y3"],
+    x=past["x"],
+    y=past["y3"],
     mode='lines+markers',
     name='Other devices',
     stream=Stream(token=stream_ids[2], maxpoints=500),
@@ -98,8 +98,8 @@ trace3 = Scatter(
 )
 
 trace4 = Scatter(
-    x=past_data["x"],
-    y=past_data["y4"],
+    x=past["x"],
+    y=past["y4"],
     mode='lines+markers',
     name='Detected faces',
     stream=Stream(token=stream_ids[3], maxpoints=500),
