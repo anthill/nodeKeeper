@@ -1,3 +1,18 @@
+Skip to content
+ This repository
+Explore
+Gist
+Blog
+Help
+GILLES Armand armgilles
+ 
+4  Unwatch 
+  Star 0
+ Fork 0anthill/nodeKeeper
+ tree: 727c9d6f69  nodeKeeper / stream.py
+GILLES Armandarmgilles an hour ago Filtering history
+2 contributors Alexandre ValletteGILLES Armand
+171 lines (146 sloc)  4.154 kb RawBlameHistory  
 # -*- coding: utf-8 -*-
 import plotly.plotly as py  
 import plotly.tools as tls   
@@ -30,8 +45,8 @@ except:
     past_data = {"x": [], "y1": [], "y2": [], "y3": [], "y4": []}
 
 # Filtering history 
-past = pd.DataFrame(past_data)
-past = past.tail(500)
+#past = pd.DataFrame(past_data)
+#past = past.tail(500)
 
 
 # init plotly stream
@@ -168,3 +183,5 @@ while True:
 
 
 
+Status API Training Shop Blog About
+© 2014 GitHub, Inc. Terms Privacy Security Contact
