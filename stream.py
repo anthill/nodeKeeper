@@ -5,6 +5,7 @@ from plotly.graph_objs import *
 import datetime 
 import time
 import json
+import pandas as pd
 import argparse
 from sniff import count_devices
 from faceMatch import initFaceRecog, snapAndAnalyse
@@ -27,6 +28,10 @@ try:
 except:
     print "No past data"
     past_data = {"x": [], "y1": [], "y2": [], "y3": [], "y4": []}
+
+# Filtering history 
+past_data = pd.DataFrame(past_data)
+past_data = past_data.tail(30)
 
 
 # init plotly stream
