@@ -36,29 +36,81 @@ trace1 = Scatter(
     y=past_data["y1"],
     mode='lines+markers',
     name='Total devices',
-    stream=Stream(token=stream_ids[0], maxpoints=80)
+    stream=Stream(token=stream_ids[0], maxpoints=80),
+    marker=Marker(
+        line=Line(
+            color='rgb(255, 255, 255)',
+            width=1
+        )
+    ),
+    line=Line(
+        color='rgba(31, 119, 180, 0.5)',
+        shape='spline',
+        smoothing=1
+    ),
+    opacity=1
 )
+
 trace2 = Scatter(
     x=past_data["x"],
     y=past_data["y2"],
     mode='lines+markers',
     name='Apple devices',
-    stream=Stream(token=stream_ids[1], maxpoints=80)
+    stream=Stream(token=stream_ids[1], maxpoints=80),
+    marker=Marker(
+        line=Line(
+            color='rgb(255, 255, 255)',
+            width=1
+        )
+    ),
+    line=Line(
+        color='rgba(255, 127, 14, 0.5)',
+        shape='spline',
+        smoothing=1
+    ),
+    opacity=1
 )
+
 trace3 = Scatter(
     x=past_data["x"],
-    y=past_data["y2"],
+    y=past_data["y3"],
     mode='lines+markers',
     name='Other devices',
-    stream=Stream(token=stream_ids[2], maxpoints=80)
+    stream=Stream(token=stream_ids[2], maxpoints=80),
+    marker=Marker(
+        line=Line(
+            color='rgb(255, 255, 255)',
+            width=1
+        )
+    ),
+    line=Line(
+        color='rgba(44, 160, 44, 0.5)',
+        shape='spline',
+        smoothing=1
+    ),
+    opacity=1
 )
+
 trace4 = Scatter(
     x=past_data["x"],
     y=past_data["y4"],
     mode='lines+markers',
     name='Detected faces',
-    stream=Stream(token=stream_ids[3], maxpoints=80)
+    stream=Stream(token=stream_ids[3], maxpoints=80),
+    marker=Marker(
+        line=Line(
+            color='rgb(255, 255, 255)',
+            width=1
+        )
+    ),
+    line=Line(
+        color='rgba(214, 39, 40, 0.5)',
+        shape='spline',
+        smoothing=1
+    ),
+    opacity=1
 )
+
 data = Data([trace1, trace2, trace3, trace4])
 layout = Layout(title='Affluence')
 fig = Figure(data=data, layout=layout)
