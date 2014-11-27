@@ -105,6 +105,6 @@ trace4 = Scatter(
 )
 
 data = Data([trace1, trace2, trace3, trace4])
-layout = Layout(title="Day's affluence")
+layout = Layout(title="November 26th's affluence")
 fig = Figure(data=data, layout=layout)
-unique_url = py.plot(fig, filename="Day's affluence")
+unique_url = py.plot(fig, filename="November 26th's affluence")
