@@ -31,12 +31,16 @@ except:
 
 # init plotly stream
 stream_ids = tls.get_credentials_file()['stream_ids']
+stream = Stream(
+    maxpoints=30
+)
+
 trace1 = Scatter(
     x=past_data["x"],
     y=past_data["y1"],
     mode='lines+markers',
     name='Total devices',
-    stream=Stream(token=stream_ids[0], maxpoints=30),
+    stream=Stream(token=stream_ids[0]),
     marker=Marker(
         line=Line(
             color='rgb(255, 255, 255)',
@@ -56,7 +60,7 @@ trace2 = Scatter(
     y=past_data["y2"],
     mode='lines+markers',
     name='Apple devices',
-    stream=Stream(token=stream_ids[1], maxpoints=30),
+    stream=Stream(token=stream_ids[1]),
     marker=Marker(
         line=Line(
             color='rgb(255, 255, 255)',
@@ -76,7 +80,7 @@ trace3 = Scatter(
     y=past_data["y3"],
     mode='lines+markers',
     name='Other devices',
-    stream=Stream(token=stream_ids[2], maxpoints=30),
+    stream=Stream(token=stream_ids[2]),
     marker=Marker(
         line=Line(
             color='rgb(255, 255, 255)',
@@ -96,7 +100,7 @@ trace4 = Scatter(
     y=past_data["y4"],
     mode='lines+markers',
     name='Detected faces',
-    stream=Stream(token=stream_ids[3], maxpoints=30),
+    stream=Stream(token=stream_ids[3]),
     marker=Marker(
         line=Line(
             color='rgb(255, 255, 255)',
