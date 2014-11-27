@@ -4,3 +4,4 @@ Result_Node_Keeper
 Node_Keeper
 image_debug
 script/Benchmark/
+*.pyc

@@ -47,7 +47,7 @@ trace2 = Scatter(
 )
 trace3 = Scatter(
     x=past_data["x"],
-    y=past_data["y2"],
+    y=past_data["y3"],
     mode='lines+markers',
     name='Other devices',
     stream=Stream(token=stream_ids[2], maxpoints=80)
