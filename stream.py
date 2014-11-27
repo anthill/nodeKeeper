@@ -5,7 +5,6 @@ from plotly.graph_objs import *
 import datetime 
 import time
 import json
-import pandas as pd
 import argparse
 from sniff import count_devices
 from faceMatch import initFaceRecog, snapAndAnalyse
@@ -29,20 +28,15 @@ except:
     print "No past data"
     past_data = {"x": [], "y1": [], "y2": [], "y3": [], "y4": []}
 
-# Filtering history 
-#past = pd.DataFrame(past_data)
-#past = past.tail(500)
-
 
 # init plotly stream
 stream_ids = tls.get_credentials_file()['stream_ids']
-
 trace1 = Scatter(
     x=past_data["x"],
     y=past_data["y1"],
     mode='lines+markers',
     name='Total devices',
-    stream=Stream(token=stream_ids[0], maxpoints=500),
+    stream=Stream(token=stream_ids[0], maxpoints=80),
     marker=Marker(
         line=Line(
             color='rgb(255, 255, 255)',
@@ -62,7 +56,7 @@ trace2 = Scatter(
     y=past_data["y2"],
     mode='lines+markers',
     name='Apple devices',
-    stream=Stream(token=stream_ids[1], maxpoints=500),
+    stream=Stream(token=stream_ids[1], maxpoints=80),
     marker=Marker(
         line=Line(
             color='rgb(255, 255, 255)',
@@ -82,7 +76,7 @@ trace3 = Scatter(
     y=past_data["y3"],
     mode='lines+markers',
     name='Other devices',
-    stream=Stream(token=stream_ids[2], maxpoints=500),
+    stream=Stream(token=stream_ids[2], maxpoints=80),
     marker=Marker(
         line=Line(
             color='rgb(255, 255, 255)',
@@ -102,7 +96,7 @@ trace4 = Scatter(
     y=past_data["y4"],
     mode='lines+markers',
     name='Detected faces',
-    stream=Stream(token=stream_ids[3], maxpoints=500),
+    stream=Stream(token=stream_ids[3], maxpoints=80),
     marker=Marker(
         line=Line(
             color='rgb(255, 255, 255)',
@@ -164,3 +158,4 @@ while True:
 
     time.sleep(60)
     print x
+    print res
