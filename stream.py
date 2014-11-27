@@ -38,8 +38,8 @@ past = past.tail(500)
 stream_ids = tls.get_credentials_file()['stream_ids']
 
 trace1 = Scatter(
-    x=past["x"],
-    y=past["y1"],
+    x=past_data["x"],
+    y=past_data["y1"],
     mode='lines+markers',
     name='Total devices',
     stream=Stream(token=stream_ids[0], maxpoints=500),
@@ -58,8 +58,8 @@ trace1 = Scatter(
 )
 
 trace2 = Scatter(
-    x=past["x"],
-    y=past["y2"],
+    x=past_data["x"],
+    y=past_data["y2"],
     mode='lines+markers',
     name='Apple devices',
     stream=Stream(token=stream_ids[1], maxpoints=500),
@@ -78,8 +78,8 @@ trace2 = Scatter(
 )
 
 trace3 = Scatter(
-    x=past["x"],
-    y=past["y3"],
+    x=past_data["x"],
+    y=past_data["y3"],
     mode='lines+markers',
     name='Other devices',
     stream=Stream(token=stream_ids[2], maxpoints=500),
@@ -98,8 +98,8 @@ trace3 = Scatter(
 )
 
 trace4 = Scatter(
-    x=past["x"],
-    y=past["y4"],
+    x=past_data["x"],
+    y=past_data["y4"],
     mode='lines+markers',
     name='Detected faces',
     stream=Stream(token=stream_ids[3], maxpoints=500),
