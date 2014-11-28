@@ -159,3 +159,9 @@ s4.write(dict(x=x, y=faces))
 
 with open("data/dump.json", "w") as dump:
     dump.write(json.dumps(past_data))
+    
+# (@) Close the stream when done plotting
+s1.close()
+s2.close()
+s3.close()
+s4.close() 
