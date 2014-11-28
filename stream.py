@@ -6,6 +6,7 @@ import datetime
 import time
 import json
 import argparse
+import pandas as pd
 from sniff import count_devices
 from faceMatch import initFaceRecog, snapAndAnalyse
 
@@ -28,15 +29,20 @@ except:
     print "No past data"
     past_data = {"x": [], "y1": [], "y2": [], "y3": [], "y4": []}
 
+# Max point for Plotly
+nbr_point = 500
+
+df = pd.DataFrame(past_data)
+df = df.tail(500)
 
 # init plotly stream
 stream_ids = tls.get_credentials_file()['stream_ids']
 trace1 = Scatter(
-    x=past_data["x"],
-    y=past_data["y1"],
+    x=df["x"],
+    y=df["y1"],
     mode='lines+markers',
     name='Total devices',
-    stream=Stream(token=stream_ids[0], maxpoints=80),
+    stream=Stream(token=stream_ids[0], maxpoints=500),
     marker=Marker(
         line=Line(
             color='rgb(255, 255, 255)',
@@ -52,11 +58,11 @@ trace1 = Scatter(
 )
 
 trace2 = Scatter(
-    x=past_data["x"],
-    y=past_data["y2"],
+    x=df["x"],
+    y=df["y2"],
     mode='lines+markers',
     name='Apple devices',
-    stream=Stream(token=stream_ids[1], maxpoints=80),
+    stream=Stream(token=stream_ids[1], maxpoints=500),
     marker=Marker(
         line=Line(
             color='rgb(255, 255, 255)',
@@ -72,11 +78,11 @@ trace2 = Scatter(
 )
 
 trace3 = Scatter(
-    x=past_data["x"],
-    y=past_data["y3"],
+    x=df["x"],
+    y=df["y3"],
     mode='lines+markers',
     name='Other devices',
-    stream=Stream(token=stream_ids[2], maxpoints=80),
+    stream=Stream(token=stream_ids[2], maxpoints=500),
     marker=Marker(
         line=Line(
             color='rgb(255, 255, 255)',
@@ -92,11 +98,11 @@ trace3 = Scatter(
 )
 
 trace4 = Scatter(
-    x=past_data["x"],
-    y=past_data["y4"],
+    x=df["x"],
+    y=df["y4"],
     mode='lines+markers',
     name='Detected faces',
-    stream=Stream(token=stream_ids[3], maxpoints=80),
+    stream=Stream(token=stream_ids[3], maxpoints=500),
     marker=Marker(
         line=Line(
             color='rgb(255, 255, 255)',
@@ -147,15 +153,15 @@ while True:
     past_data["y2"] += [apple]
     past_data["y3"] += [others]
     past_data["y4"] += [faces]
-    with open("data/dump.json", "w") as dump:
-        dump.write(json.dumps(past_data))
-    
     
     s1.write(dict(x=x, y=total))  
     s2.write(dict(x=x, y=apple))  
     s3.write(dict(x=x, y=others))  
     s4.write(dict(x=x, y=faces))  
-
+    
+    with open("data/dump.json", "w") as dump:
+        dump.write(json.dumps(past_data))    
+    
     time.sleep(60)
     print x
     print res
