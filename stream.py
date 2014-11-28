@@ -132,36 +132,36 @@ s4.open()
 
  
 # stream data
+
+while True:
     
-x = (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime('%Y-%m-%d %H:%M:%S.%f')
-res = count_devices(args["interface"], args["server"], args["remove"].split(";"))
-try:
-    faces = snapAndAnalyse(camera, node_cascade)
-except Exception, e:
-    print "Error in snapAndAnalyse"
-    print e
-    faces = 0
+    x = (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime('%Y-%m-%d %H:%M:%S.%f')
+    res = count_devices(args["interface"], args["server"], args["remove"].split(";"))
+    try:
+        faces = snapAndAnalyse(camera, node_cascade)
+    except Exception, e:
+        print "Error in snapAndAnalyse"
+        print e
+        faces = 0
 
-total = sum(res.values())
-apple = sum(map(lambda x: res[x], filter(lambda x: "apple" in x.lower() , res.keys())))
-others = sum(map(lambda x: res[x], filter(lambda x: "apple" not in x.lower() , res.keys())))
+    total = sum(res.values())
+    apple = sum(map(lambda x: res[x], filter(lambda x: "apple" in x.lower() , res.keys())))
+    others = sum(map(lambda x: res[x], filter(lambda x: "apple" not in x.lower() , res.keys())))
 
-past_data["x"] += [x]
-past_data["y1"] += [total]
-past_data["y2"] += [apple]
-past_data["y3"] += [others]
-past_data["y4"] += [faces]
-
-s1.write(dict(x=x, y=total))  
-s2.write(dict(x=x, y=apple))  
-s3.write(dict(x=x, y=others))  
-s4.write(dict(x=x, y=faces))  
-
-with open("data/dump.json", "w") as dump:
-    dump.write(json.dumps(past_data))
+    past_data["x"] += [x]
+    past_data["y1"] += [total]
+    past_data["y2"] += [apple]
+    past_data["y3"] += [others]
+    past_data["y4"] += [faces]
     
-# (@) Close the stream when done plotting
-s1.close()
-s2.close()
-s3.close()
-s4.close() 
+    s1.write(dict(x=x, y=total))  
+    s2.write(dict(x=x, y=apple))  
+    s3.write(dict(x=x, y=others))  
+    s4.write(dict(x=x, y=faces))  
+    
+    with open("data/dump.json", "w") as dump:
+        dump.write(json.dumps(past_data))    
+    
+    time.sleep(60)
+    print x
+    print res

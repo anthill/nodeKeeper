@@ -5,3 +5,6 @@ Node_Keeper
 image_debug
 script/Benchmark/
 *.pyc
+image_test/
+script/plot_a_day/dump.json
+script/stream_for_cron.py
