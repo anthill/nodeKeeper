@@ -2,6 +2,8 @@
 
 Counting the number of people present in our coworking space.
 
+Post blog : http://ants.builders/blog/25-11-2014/counting-coworkers-with-machine-learning.html
+
 ### Scope
 
 In order to have some metrics about how many people use this collaborative space, we have installed a small rapsberry pi whose role is to measure affluence and pipe the result to a web page accessible by anyone.
