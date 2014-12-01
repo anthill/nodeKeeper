@@ -32,14 +32,14 @@ except:
 # Max point for Plotly
 nbr_point = 500
 
-df = pd.DataFrame(past_data)
-df = df.tail(nbr_point)
+#df = pd.DataFrame(past_data)
+#df = df.tail(nbr_point)
 
 # init plotly stream
 stream_ids = tls.get_credentials_file()['stream_ids']
 trace1 = Scatter(
-    x=df["x"],
-    y=df["y1"],
+    x=[],
+    y=[],
     mode='lines+markers',
     name='Total devices',
     stream=Stream(token=stream_ids[0], maxpoints=nbr_point),
@@ -58,8 +58,8 @@ trace1 = Scatter(
 )
 
 trace2 = Scatter(
-    x=df["x"],
-    y=df["y2"],
+    x=[],
+    y=[],
     mode='lines+markers',
     name='Apple devices',
     stream=Stream(token=stream_ids[1], maxpoints=nbr_point),
@@ -78,8 +78,8 @@ trace2 = Scatter(
 )
 
 trace3 = Scatter(
-    x=df["x"],
-    y=df["y3"],
+    x=[],
+    y=[],
     mode='lines+markers',
     name='Other devices',
     stream=Stream(token=stream_ids[2], maxpoints=nbr_point),
@@ -98,8 +98,8 @@ trace3 = Scatter(
 )
 
 trace4 = Scatter(
-    x=df["x"],
-    y=df["y4"],
+    x=[],
+    y=[],
     mode='lines+markers',
     name='Detected faces',
     stream=Stream(token=stream_ids[3], maxpoints=nbr_point),
@@ -120,7 +120,7 @@ trace4 = Scatter(
 data = Data([trace1, trace2, trace3, trace4])
 layout = Layout(title='Affluence')
 fig = Figure(data=data, layout=layout)
-unique_url = py.plot(fig, filename='LeNode')
+unique_url = py.plot(fig, filename='LeNode', fileopt="extend")
 s1 = py.Stream(stream_ids[0])
 s1.open()
 s2 = py.Stream(stream_ids[1])
@@ -132,36 +132,30 @@ s4.open()
 
  
 # stream data
+    
+x = (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime('%Y-%m-%d %H:%M:%S.%f')
+res = count_devices(args["interface"], args["server"], args["remove"].split(";"))
+try:
+    faces = snapAndAnalyse(camera, node_cascade)
+except Exception, e:
+    print "Error in snapAndAnalyse"
+    print e
+    faces = 0
 
-while True:
-    
-    x = (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime('%Y-%m-%d %H:%M:%S.%f')
-    res = count_devices(args["interface"], args["server"], args["remove"].split(";"))
-    try:
-        faces = snapAndAnalyse(camera, node_cascade)
-    except Exception, e:
-        print "Error in snapAndAnalyse"
-        print e
-        faces = 0
+total = sum(res.values())
+apple = sum(map(lambda x: res[x], filter(lambda x: "apple" in x.lower() , res.keys())))
+others = sum(map(lambda x: res[x], filter(lambda x: "apple" not in x.lower() , res.keys())))
 
-    total = sum(res.values())
-    apple = sum(map(lambda x: res[x], filter(lambda x: "apple" in x.lower() , res.keys())))
-    others = sum(map(lambda x: res[x], filter(lambda x: "apple" not in x.lower() , res.keys())))
+past_data["x"] += [x]
+past_data["y1"] += [total]
+past_data["y2"] += [apple]
+past_data["y3"] += [others]
+past_data["y4"] += [faces]
 
-    past_data["x"] += [x]
-    past_data["y1"] += [total]
-    past_data["y2"] += [apple]
-    past_data["y3"] += [others]
-    past_data["y4"] += [faces]
-    
-    s1.write(dict(x=x, y=total))  
-    s2.write(dict(x=x, y=apple))  
-    s3.write(dict(x=x, y=others))  
-    s4.write(dict(x=x, y=faces))  
-    
-    with open("data/dump.json", "w") as dump:
-        dump.write(json.dumps(past_data))    
-    
-    time.sleep(60)
-    print x
-    print res
+s1.write(dict(x=x, y=total))  
+s2.write(dict(x=x, y=apple))  
+s3.write(dict(x=x, y=others))  
+s4.write(dict(x=x, y=faces))  
+
+with open("data/dump.json", "w") as dump:
+    dump.write(json.dumps(past_data))
