@@ -30,7 +30,7 @@ except:
     past_data = {"x": [], "y1": [], "y2": [], "y3": [], "y4": []}
 
 # Max point for Plotly
-nbr_point = 10
+nbr_point = 50
 
 #df = pd.DataFrame(past_data)
 #df = df.tail(nbr_point)
