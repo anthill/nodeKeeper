@@ -120,7 +120,7 @@ trace4 = Scatter(
 data = Data([trace1, trace2, trace3, trace4])
 layout = Layout(title='Affluence')
 fig = Figure(data=data, layout=layout)
-unique_url = py.plot(fig, filename='LeNode', fileopt="extend")
+unique_url = py.plot(fig, filename='LeNode', fileopt="new")
 s1 = py.Stream(stream_ids[0])
 s1.open()
 s2 = py.Stream(stream_ids[1])
