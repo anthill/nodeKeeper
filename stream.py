@@ -30,7 +30,7 @@ except:
     past_data = {"x": [], "y1": [], "y2": [], "y3": [], "y4": []}
 
 # Max point for Plotly
-nbr_point = 50
+nbr_point = 263
 
 #df = pd.DataFrame(past_data)
 #df = df.tail(nbr_point)
@@ -120,7 +120,7 @@ trace4 = Scatter(
 data = Data([trace1, trace2, trace3, trace4])
 layout = Layout(title='Affluence')
 fig = Figure(data=data, layout=layout)
-unique_url = py.plot(fig, filename='LeNode', fileopt="new")
+unique_url = py.plot(fig, filename='LeNode', fileopt="extend")
 s1 = py.Stream(stream_ids[0])
 s1.open()
 s2 = py.Stream(stream_ids[1])
