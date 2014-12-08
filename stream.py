@@ -157,5 +157,5 @@ s2.write(dict(x=x, y=apple))
 s3.write(dict(x=x, y=others))  
 s4.write(dict(x=x, y=faces))  
 
-with open("data/dump.json", "w") as dump:
+with open("/home/pi/nodeKeeper/data/dump.json", "w") as dump:
     dump.write(json.dumps(past_data))
