@@ -23,7 +23,7 @@ args = vars(ap.parse_args())
 
 # check for past data stored in a file
 try:
-    with open("data/dump.json", "r") as dump:
+    with open("/home/pi/nodeKeeper/data/dump.json", "r") as dump:
         past_data = json.loads(dump.read())
 except:
     print "No past data"
