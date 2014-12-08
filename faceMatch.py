@@ -30,7 +30,7 @@ def initFaceRecog():
     camera.vflip = True
 
     # Init Model
-    node_cascade = cv2.CascadeClassifier('nodeKeeper/script/cascade.xml')
+    node_cascade = cv2.CascadeClassifier('/home/pi/nodeKeeper/script/cascade.xml')
     return [camera, node_cascade]
 
 
@@ -38,19 +38,19 @@ def cam_photo(camera):
     camera.start_preview()
     time.sleep(5)
     timecam = (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime('%Y%m%d-%H%M%S') + ".jpg"
-    camera.capture('nodeKeeper/image_test/' + '%s' %(timecam))
+    camera.capture('/home/pi/nodeKeeper/image_test/' + '%s' %(timecam))
     camera.stop_preview()
     return(timecam)
     
 def analyse_photo(filename, node_cascade):
-    img = cv2.imread('nodeKeeper/image_test/' + filename)
+    img = cv2.imread('/home/pi/nodeKeeper/image_test/' + filename)
     resized_image = cv2.resize(img, (640, 480))
     nodes = node_cascade.detectMultiScale(resized_image)
     create_photo_analyse(filename, node_cascade)
     return(len(nodes))
 
 def create_photo_analyse(filename, node_cascade):
-    img = cv2.imread('nodeKeeper/image_test/' + filename)
+    img = cv2.imread('/home/pi/nodeKeeper/image_test/' + filename)
     fig = plt.figure()
     resized_image = cv2.resize(img, (640, 480)) 
     nodes = node_cascade.detectMultiScale(resized_image)
@@ -67,7 +67,7 @@ def create_photo_analyse(filename, node_cascade):
         currentAxis.add_patch(Rectangle(*coords, fill=True, alpha=0.2, color='#00FF00', edgecolor='#00FF00', linewidth=3))
     
     plt.scatter(xx,yy, color="r")
-    plt.savefig('nodeKeeper/image_analyse/' + filename)
+    plt.savefig('/home/pi/nodeKeeper/image_analyse/' + filename)
     
 def snapAndAnalyse(camera, node_cascade):
     filename = cam_photo(camera)
