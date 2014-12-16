@@ -138,6 +138,7 @@ x = (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime('%Y-%m-%d %
 humidity, temperature = meteo_node()
 print "humidity= " +str(humidity)
 print "temperature = " +str(temperature)
+
 res = count_devices(args["interface"], args["server"], args["remove"].split(";"))
 try:
     faces = snapAndAnalyse(camera, node_cascade)
