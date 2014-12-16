@@ -9,6 +9,7 @@ import argparse
 import pandas as pd
 from sniff import count_devices
 from faceMatch import initFaceRecog, snapAndAnalyse
+from temperature_humidity import meteo_node
 
 # parse command line args
 
@@ -134,6 +135,9 @@ s4.open()
 # stream data
     
 x = (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime('%Y-%m-%d %H:%M:%S.%f')
+humidity, temperature = meteo_node()
+print "humidity= " +str(humidity)
+print "temperature = " +str(temperature)
 res = count_devices(args["interface"], args["server"], args["remove"].split(";"))
 try:
     faces = snapAndAnalyse(camera, node_cascade)
@@ -151,6 +155,9 @@ past_data["y1"] += [total]
 past_data["y2"] += [apple]
 past_data["y3"] += [others]
 past_data["y4"] += [faces]
+
+#
+print str(X) + ' ' + str(total) + ' ' + str(apple) + ' ' + str(others)  + ' ' + str(faces)
 
 s1.write(dict(x=x, y=total))  
 s2.write(dict(x=x, y=apple))  
