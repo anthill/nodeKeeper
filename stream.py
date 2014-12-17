@@ -158,7 +158,7 @@ past_data["y3"] += [others]
 past_data["y4"] += [faces]
 
 #
-print str(X) + ' ' + str(total) + ' ' + str(apple) + ' ' + str(others)  + ' ' + str(faces)
+print str(x) + ' ' + str(total) + ' ' + str(apple) + ' ' + str(others)  + ' ' + str(faces)
 
 s1.write(dict(x=x, y=total))  
 s2.write(dict(x=x, y=apple))  
