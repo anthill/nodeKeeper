@@ -28,6 +28,6 @@ sudo python stream.py -i wlan0 -s 10.185.62.0 -r "Lexmark International Inc.;NEC
 For Node :
 
 ```
-sudo python stream.py -i wlan0 -s 10.33.0.0 -r "Lexmark International Inc.;NEC Corporation"
+sudo python nodeKeeper/stream.py -i wlan0 -s 10.33.0.0 -r "Lexmark International Inc.;NEC Corporation;Routerboard.com;ASUSTEK COMPUTER INC.;'Shenzhen Tp-Link Technology Co; Ltd.'"
 ```
 
