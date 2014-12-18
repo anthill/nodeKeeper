@@ -38,6 +38,7 @@ nbr_point = 263
 
 # init plotly stream
 stream_ids = tls.get_credentials_file()['stream_ids']
+# Total device
 trace1 = Scatter(
     x=[],
     y=[],
@@ -58,6 +59,7 @@ trace1 = Scatter(
     opacity=1
 )
 
+# Apple device
 trace2 = Scatter(
     x=[],
     y=[],
@@ -78,6 +80,7 @@ trace2 = Scatter(
     opacity=1
 )
 
+# Others device
 trace3 = Scatter(
     x=[],
     y=[],
@@ -98,6 +101,7 @@ trace3 = Scatter(
     opacity=1
 )
 
+# Face detect
 trace4 = Scatter(
     x=[],
     y=[],
@@ -122,13 +126,13 @@ data = Data([trace1, trace2, trace3, trace4])
 layout = Layout(title='Affluence')
 fig = Figure(data=data, layout=layout)
 unique_url = py.plot(fig, filename='LeNode', fileopt="extend")
-s1 = py.Stream(stream_ids[0])
+s1 = py.Stream(stream_ids[0]) # Total
 s1.open()
-s2 = py.Stream(stream_ids[1])
+s2 = py.Stream(stream_ids[1]) # Apple 
 s2.open()
-s3 = py.Stream(stream_ids[2])
+s3 = py.Stream(stream_ids[2]) # Others
 s3.open()
-s4 = py.Stream(stream_ids[3])
+s4 = py.Stream(stream_ids[3]) # Faces
 s4.open()
 
  
@@ -167,3 +171,8 @@ s4.write(dict(x=x, y=faces))
 
 with open("/home/pi/nodeKeeper/data/dump.json", "w") as dump:
     dump.write(json.dumps(past_data))
+    
+s1.close() # Total
+s2.close() # Apple
+s3.close() # Others
+s4.close() # Faces
