@@ -222,8 +222,6 @@ s6.open()
     
 x = (datetime.datetime.now() + datetime.timedelta(hours=1)).strftime('%Y-%m-%d %H:%M:%S.%f')
 humidity, temperature = meteo_node()
-print "humidity= " +str(humidity)
-print "temperature = " +str(temperature)
 
 res = count_devices(args["interface"], args["server"], args["remove"].split(";"))
 try:
@@ -242,6 +240,13 @@ past_data["y1"] += [total]
 past_data["y2"] += [apple]
 past_data["y3"] += [others]
 past_data["y4"] += [faces]
+try:
+    past_data["y5"]
+    past_data["y6"]
+except:
+    past_data["y5"] = []
+    past_data["y6"] = []
+    
 past_data["y5"] += [humidity]
 past_data["y6"] += [temperature]
 
