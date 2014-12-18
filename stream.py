@@ -203,7 +203,7 @@ layout = Layout(title='Affluence',
 
 
 fig = Figure(data=data, layout=layout)
-unique_url = py.plot(fig, filename='LeNode', fileopt="extend")
+unique_url = py.plot(fig, filename='LeNode')
 
 s1 = py.Stream(stream_ids[0]) # Total
 s1.open()
