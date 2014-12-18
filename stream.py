@@ -182,7 +182,7 @@ layout = Layout(title='Affluence',
                     domain=[0.4, 1]),
                 yaxis2=YAxis(
                     domain=[0, 0.3],
-                    title='Humidity %RH',
+                    title='Humidity %',
                     titlefont=Font(
                         color='rgba(148, 103, 189, 0.9)'),
                     tickfont=Font(
