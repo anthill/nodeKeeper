@@ -251,8 +251,7 @@ past_data["y5"] += [humidity]
 past_data["y6"] += [temperature]
 
 # Testing
-print str(x) + ' ' + str(total) + ' ' + str(apple) + ' ' + str(others)  
-+ ' ' + str(faces) + ' ' + str(humidity) + ' ' + str(temperature)
+#print str(x) + ' ' + str(total) + ' ' + str(apple) + ' ' + str(others)  + ' ' + str(faces) + ' ' + str(humidity) + ' ' + str(temperature)
 
 s1.write(dict(x=x, y=total))  
 s2.write(dict(x=x, y=apple))  
