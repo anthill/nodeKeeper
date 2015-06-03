@@ -2,7 +2,7 @@
 
 Counting the number of people present in our coworking space.
 
-Post blog : http://ants.builders/blog/25-11-2014/counting-coworkers-with-machine-learning.html
+Post blog : http://ants.builders/blog/26-11-2014/counting-coworkers-with-machine-learning.html
 
 ### Scope
 
